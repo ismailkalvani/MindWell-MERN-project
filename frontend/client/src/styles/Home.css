@@ -1,0 +1,32 @@
+/* Home.css */
+.home {
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  background-color: #05445E;
+}
+
+.hero-section {
+  background-color: #189AB4;
+  padding: 100px 0;
+}
+
+.hero-section .btn-primary {
+  background-color: #75E6DA;
+  border-color: #75E6DA;
+}
+
+.services-section {
+  background-color: #D4F1F4;
+}
+
+.card {
+  border: none;
+  background-color: #75E6DA;
+  color: #05445E;
+}
+
+footer {
+  background-color: #05445E;
+}

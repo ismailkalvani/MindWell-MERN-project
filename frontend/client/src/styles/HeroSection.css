@@ -1,0 +1,10 @@
+/* HeroSection.css */
+.hero-section {
+    background-color: #189AB4;
+    padding: 100px 0;
+  }
+  .hero-section .btn-primary {
+    background-color: #75E6DA;
+    border-color: #75E6DA;
+  }
+  

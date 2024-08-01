@@ -1,0 +1,21 @@
+/* ServicesSection.css */
+.services-section {
+    background-color: #D4F1F4;
+  }
+  .services-section h2 {
+    color: #05445E;
+    font-family: 'Poppins', sans-serif;
+  }
+  .card {
+    border: none;
+    background-color: #75E6DA;
+    color: #05445E;
+    transition: transform 0.3s;
+  }
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .card-title {
+    font-family: 'Poppins', sans-serif;
+  }
+  
