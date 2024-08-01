@@ -68,7 +68,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-For questions or support, contact Ismail Kalvani at your_email@example.com.
+For questions or support, contact Ismail Kalvani at ismailkalvani.work@gmail.com.
 
 ```
 
