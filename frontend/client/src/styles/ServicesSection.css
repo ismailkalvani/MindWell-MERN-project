@@ -1,21 +1,18 @@
-/* ServicesSection.css */
 .services-section {
-    background-color: #D4F1F4;
-  }
-  .services-section h2 {
-    color: #05445E;
-    font-family: 'Poppins', sans-serif;
-  }
-  .card {
-    border: none;
-    background-color: #75E6DA;
-    color: #05445E;
-    transition: transform 0.3s;
-  }
-  .card:hover {
-    transform: scale(1.05);
-  }
-  .card-title {
-    font-family: 'Poppins', sans-serif;
-  }
-  
+  background: linear-gradient(to right, #D4F1F4, #a4fff6);
+  color: #05445E;
+  padding: 60px 0;
+}
+
+.services-section h2 {
+  font-size: 2.5rem;
+}
+
+.services-section .card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.services-section .card-title {
+  color: #189AB4;
+}
