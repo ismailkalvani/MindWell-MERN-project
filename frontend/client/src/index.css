@@ -13,14 +13,15 @@ code {
 } */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue','Poppins', sans-serif;
-  background-color: #f0f8ff; /* Adjust to your theme colors */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Poppins", sans-serif;
+  background-color: #05445e; 
 }
 .navbar {
-  background-color: #ff6f61; /* Adjust to your theme colors */
+  background-color: #189ab4; 
 }
 .footer {
-  background-color: #ff6f61; /* Adjust to your theme colors */
+  background-color: #75e6da; 
   color: white;
 }

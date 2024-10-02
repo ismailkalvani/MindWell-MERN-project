@@ -1,0 +1,30 @@
+.counseling-page {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #D4F1F4 0%, #75E6DA 100%);
+    color: #05445E;
+  }
+  
+  .counseling-page h1,
+  .counseling-page h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  }
+  
+  .counseling-page p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .counseling-page img {
+    border-radius: 8px;
+  }
+  
+  .counseling-page ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .counseling-page ul li {
+    margin-bottom: 10px;
+  }
+  

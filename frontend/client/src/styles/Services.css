@@ -1,0 +1,43 @@
+.services-page{
+  padding: 60px ;
+  background: linear-gradient(135deg, #d4f1f4 0%, #75e6da 100%);
+  color: #05445e;
+}
+.services-page ::after{
+  background: linear-gradient(135deg,#d4f1f4 0%, #75e6da 100%);
+  color: #05445e;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  content: "";
+  z-index: -1;
+}
+
+.services-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.service-card {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  border: none;
+  background-color: #75e6da;
+  color: #05445e;
+  animation: zoomIn 1s ease-in-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

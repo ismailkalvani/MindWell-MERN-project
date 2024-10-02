@@ -1,20 +1,11 @@
 /* Home.css */
 .home {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue" , "Lora" ,"Teko";
 }
 
 .navbar {
   background-color: #05445E;
-}
-
-.hero-section {
-  background-color: #189AB4;
-  padding: 100px 0;
-}
-
-.hero-section .btn-primary {
-  background-color: #75E6DA;
-  border-color: #75E6DA;
 }
 
 .services-section {

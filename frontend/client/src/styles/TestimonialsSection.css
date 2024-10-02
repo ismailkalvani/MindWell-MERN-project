@@ -1,0 +1,21 @@
+.testimonials-section {
+  padding: 60px 0;
+  background: linear-gradient(135deg, #58b4aa 0%, #D4F1F4 100%);
+  color: #05445E;
+}
+
+.testimonial-quote {
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.testimonial-name {
+  font-weight: bold;
+  margin-left: 40%;
+}
+
+.carousel-item img {
+  max-width: 150px;
+  margin: 0 auto;
+}

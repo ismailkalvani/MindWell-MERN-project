@@ -1,0 +1,110 @@
+/* src/styles/UserDashboard.css */
+
+/* General Styles */
+.user-dashboard {
+  margin-top: 30px;
+  padding: 30px;
+  background: linear-gradient(135deg, #d4f1f4 0%, #75e6da 100%);
+  color: #05445e;
+  border-radius: 12px;
+  /* min-height: 100vh; */
+}
+
+.user-dashboard h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #05445e;
+}
+
+/* Table Styles */
+.appointments-table {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.appointments-table th,
+.appointments-table td {
+  padding: 15px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.appointments-table th {
+  background-color: #75e6da; /* Header background */
+  color: white; /* Header text color */
+  font-weight: bold;
+}
+
+.appointments-table tr:nth-child(even) {
+  background-color: #f4f4f9;
+}
+
+.appointments-table tr:hover {
+  background-color: #d4f1f4;
+}
+
+/* Button Styles */
+.appointments-table .btn-danger {
+  padding: 8px 12px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.appointments-table .btn-danger:hover {
+  background-color: #d9534f;
+}
+
+/* Alert Styles */
+.alert {
+  margin-top: 20px;
+}
+
+/* Card Styles */
+.card {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: none; /* Remove border for clean look */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.card-header {
+  background-color: #75e6da; /* Themed background */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Alert Styles */
+.alert {
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Modal Styles */
+.modal-header {
+  background-color: #05445e;
+  color: white;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #75e6da;
+}
+
+.modal-body p {
+  font-size: 16px;
+  color: #333;
+}
+
+.toastify-container {
+  font-size: 14px;
+}

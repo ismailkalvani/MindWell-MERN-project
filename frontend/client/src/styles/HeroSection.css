@@ -13,16 +13,19 @@
 .hero-section p {
   font-size: 1.25rem;
   margin-bottom: 2rem;
+  margin-left: auto;
 }
 
 .hero-section .btn-primary {
+  width: 25%;
+  margin-top: 0px;
   background-color: #75E6DA;
   border-color: #75E6DA;
 }
 
 .hero-section .btn-primary:hover {
-  background-color: #cfeaed;
-  border-color: #92d8e0;
+  background-color: #63c4ba;
+  border-color: #2d5c57;
 }
 
 .hero-section img {

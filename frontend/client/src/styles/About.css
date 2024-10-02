@@ -1,0 +1,70 @@
+.about-page {
+  padding: 60px 120px;
+  background: linear-gradient(135deg, #c0f9ff 0%, #00ffe5 100%);
+  color: #05445e;
+}
+.about-page ::after {
+  background: linear-gradient(135deg, #c0f9ff 0%, #00ffe5 100%);
+  color: #05445e;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  content: "";
+  z-index: -1;
+}
+
+.about-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.about-title-2 {
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.about-text {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 70px;
+}
+.about-text2 {
+  margin-top: 30px;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeIn 1s ease-in-out;
+}
+.about-team {
+  text-align: center;
+}
+
+.team-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 60px;
+  margin-top: 100px;
+}
+p {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.team-member {
+  font-size: 20px;
+  margin-bottom: 35px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

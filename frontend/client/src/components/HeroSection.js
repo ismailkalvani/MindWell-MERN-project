@@ -10,7 +10,7 @@ const HeroSection = () => {
           <Col md={6}>
             <h1>Welcome to MindWell</h1>
             <p>Your mental health is our priority. Get guidance and support here.</p>
-            <Button variant="primary">Get Started</Button>
+            <Button variant="primary" href='/login'>Get Started</Button>
           </Col>
           <Col md={6}>
             <img src="\hero1.webp" alt="Hero" className="img-fluid" />

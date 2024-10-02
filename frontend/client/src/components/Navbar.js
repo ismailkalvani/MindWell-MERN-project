@@ -1,34 +1,53 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/Navbar.css';
+// src/components/NavigationBar.js
+import React, { useContext } from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
+import { AuthContext } from "../context/AuthContext";
+import "../styles/Navbar.css";
 
-const Navbar = () => {
+const NavigationBar = () => {
+  const { isAuthenticated, isAdmin, logout } = useContext(AuthContext);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
-      <div className="container">
-        <a className="navbar-brand" href="#">MindWell</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Services</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar collapseOnSelect expand="lg" variant="dark" className="navbar">
+      <Container>
+        <Navbar.Brand href="/">MindWell</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ml-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/blog">Blog</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link>
+            {isAuthenticated ? (
+              <>
+                <Nav.Link href="/appointments">Appointments</Nav.Link>
+                <Nav.Link href="/counseling">Counseling</Nav.Link>
+                <Nav.Link href="/workshops">Workshops</Nav.Link>
+                {isAdmin ? (
+                  <Nav.Link href="/admin/dashboard">Admin Portal</Nav.Link>
+                ) : (
+                  <Nav.Link href="/user/dashboard">My Dashboard</Nav.Link>
+                )}
+                <Nav.Link
+                  onClick={() => {
+                    logout();
+                    window.location.href = "/login";
+                  }}
+                >
+                  Logout
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link href="/register">Register</Nav.Link>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavigationBar;
