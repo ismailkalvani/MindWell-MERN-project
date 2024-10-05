@@ -1,10 +1,10 @@
 .contact-page {
   padding: 60px 0;
-  background: linear-gradient(135deg, #D4F1F4 0%, #75E6DA 100%);
-  color: #05445E;
+  background: linear-gradient(135deg, #d4f1f4 0%, #75e6da 100%);
+  color: #05445e;
 }
-.contact-page ::after{
-  background: linear-gradient(135deg,#d4f1f4 0%, #75e6da 100%);
+.contact-page ::after {
+  background: linear-gradient(135deg, #d4f1f4 0%, #75e6da 100%);
   color: #05445e;
   position: absolute;
   top: 0;
@@ -13,7 +13,6 @@
   height: 100vh;
   content: "";
   z-index: -1;
-
 }
 
 .contact-title {
@@ -52,4 +51,19 @@
 .btn-primary:hover {
   background-color: #63c4ba;
   border-color: #2d5c57;
+}
+
+.success-message {
+  color: rgb(15, 0, 128);
+  margin-top: 10px;
+  font-weight: bold;
+  
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  margin-left: 10%;
+  padding: 3%;
+  font-weight: bold;
 }

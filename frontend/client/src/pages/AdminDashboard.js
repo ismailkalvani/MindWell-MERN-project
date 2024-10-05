@@ -11,7 +11,7 @@ import {
   Col,
   Modal,
 } from "react-bootstrap";
-import styles from "../styles/AdminDashboard.module.css"; // Import using CSS Modules
+import styles from "../styles/AdminDashboard.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
@@ -42,9 +42,6 @@ const AdminDashboard = () => {
 
     fetchAppointments();
   }, []);
-
-  // Similar updates as UserDashboard for AdminDashboard
-  // Ensure that you display user details and confirm before deletion
 
   const cancelAppointment = async (id) => {
     if (!window.confirm("Are you sure you want to cancel this appointment?")) {

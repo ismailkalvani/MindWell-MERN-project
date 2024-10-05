@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 
 const userRoutes = require("./routes/user");
 const adminRoutes = require("./routes/admin");
+const contactRoutes = require('./routes/contact');
 dotenv.config();
 
 const app = express();
@@ -25,6 +26,8 @@ mongoose
 // Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/appointments", require("./routes/appointments"));
+
+app.use("/api/contact", contactRoutes);
 
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);

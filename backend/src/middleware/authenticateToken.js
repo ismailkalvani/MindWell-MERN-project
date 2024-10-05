@@ -12,7 +12,7 @@ function authenticateToken(req, res, next) {
     // Verify token
     const decoded = jwt.verify(authHeader, process.env.JWT_SECRET);
     req.user = decoded.user;  // Attach user info to request
-    console.log("Decoded user:", req.user);  // Add this to verify the user info
+    console.log("Decoded user:", req.user);  //  to verify the user info
     next();
   } catch (err) {
     return res.status(401).json({ msg: "Token is not valid" });

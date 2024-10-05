@@ -18,6 +18,7 @@ import Workshops from "./pages/Workshops";
 import Contact from "./pages/Contact";
 import UserDashboard from "./pages/UserDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminContactMessages from "./pages/AdminContactMessages";
 import { AuthContext } from "./context/AuthContext";
 import "./App.css";
 
@@ -43,7 +44,11 @@ const App = () => {
         <Route
           path="/user/dashboard"
           element={
-            isAuthenticated ? <UserDashboard /> : <Navigate to="/user/dashboard" />
+            isAuthenticated ? (
+              <UserDashboard />
+            ) : (
+              <Navigate to="/user/dashboard" />
+            )
           }
         />
         <Route
@@ -57,12 +62,26 @@ const App = () => {
           }
         />
         <Route
+          path="/admin/contact"
+          element={
+            isAuthenticated && isAdmin ? (
+              <AdminContactMessages />
+            ) : (
+              <Navigate to="/admin/contact" />
+            )
+          }
+        />
+        <Route
           path="/counseling"
-          element={isAuthenticated ? <Counseling /> : <Navigate to="/counseling" />}
+          element={
+            isAuthenticated ? <Counseling /> : <Navigate to="/counseling" />
+          }
         />
         <Route
           path="/workshops"
-          element={isAuthenticated ? <Workshops /> : <Navigate to="/workshops" />}
+          element={
+            isAuthenticated ? <Workshops /> : <Navigate to="/workshops" />
+          }
         />
       </Routes>
     </Router>
