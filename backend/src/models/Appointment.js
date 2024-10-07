@@ -4,16 +4,10 @@ const mongoose = require("mongoose");
 const AppointmentSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Reference to the User model
+    ref: "User",
     required: true,
   },
-  name: {
-    // Store the user's name
-    type: String,
-    required: true,
-  },
-  email: {
-    // Store the user's email
+  service: {
     type: String,
     required: true,
   },
@@ -25,13 +19,19 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  service: {
+  reason: {
     type: String,
     required: true,
   },
-  message: {
+  paymentStatus: {
     type: String,
-    required: false,
+    enum: ["pending", "paid", "canceled"],
+    default: "pending",
+  },
+  status: {
+    type: String,
+    enum: ["active", "canceled", "rescheduled", "approved"], // Added "approved"
+    default: "active",
   },
 });
 

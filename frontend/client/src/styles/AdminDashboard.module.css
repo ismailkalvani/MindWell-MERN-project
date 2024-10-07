@@ -19,6 +19,9 @@ h1 {
   margin-bottom: 30px;
   color: #05445e; */
 }
+.card {
+  margin-top: 20px;
+}
 
 /* Table Styles */
 .table {
@@ -76,4 +79,8 @@ h1 {
 
 .btn-secondary:hover {
   background-color: #033d53;
+}
+
+.alert {
+  margin-top: 20px;
 }

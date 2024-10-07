@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 
 const userRoutes = require("./routes/user");
 const adminRoutes = require("./routes/admin");
-const contactRoutes = require('./routes/contact');
+const contactRoutes = require("./routes/contact");
 dotenv.config();
 
 const app = express();
@@ -31,6 +31,8 @@ app.use("/api/contact", contactRoutes);
 
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
+
+app.use("/api/notifications", require("./routes/notifications"));
 
 // Start server
 const PORT = process.env.PORT || 5000;

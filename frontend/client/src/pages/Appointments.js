@@ -4,21 +4,15 @@ import axios from "axios";
 import "../styles/Appointments.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-const token = localStorage.getItem("token"); // Fetch token from local storage
-const config = {
-  headers: {
-    "x-auth-token": token, // Include token in headers
-  },
-};
 
 const Appointments = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-    date: "",
+    date: "",   
     time: "",
-    service: "Counseling", // Default service
+    service: "Counseling",
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -26,32 +20,42 @@ const Appointments = () => {
 
   const { name, email, message, date, time, service } = formData;
 
-  const onChange = (e) =>
+  // Calculate today's date and time
+  const today = new Date();
+  const todayDate = today.toISOString().split("T")[0];
+  const currentTime = today.toTimeString().substring(0, 5); // Get the current time in "HH:MM" format
+
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await axios.post(
         "http://localhost:5000/api/appointments",
         formData,
         {
           headers: {
-            "x-auth-token": localStorage.getItem("token"), // Include token in request
+            "x-auth-token": localStorage.getItem("token"),
           },
         }
       );
       setSubmitted(true);
       toast.success(res.data.message);
+      setError("");
     } catch (err) {
       setError("Failed to book the appointment. Please try again later.");
       toast.error(
         err.response?.data?.message || "Failed to book the appointment."
       );
-
       setSubmitted(false);
     }
   };
+
+  const isToday = date === todayDate;
+  const minTime = isToday ? currentTime : "00:00"; 
 
   return (
     <Container className="appointments-page">
@@ -110,6 +114,7 @@ const Appointments = () => {
                 name="date"
                 value={date}
                 onChange={onChange}
+                min={todayDate} 
                 required
               />
             </Form.Group>
@@ -122,6 +127,7 @@ const Appointments = () => {
                 name="time"
                 value={time}
                 onChange={onChange}
+                min={minTime} 
                 required
               />
             </Form.Group>
