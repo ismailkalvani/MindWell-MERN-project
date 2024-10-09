@@ -15,7 +15,7 @@ router.post("/", authenticateToken, async (req, res) => {
       user: req.user.id,
       name: req.user.name,
       email: req.user.email,
-      message,
+      message: message || "No message provided", // Ensure a default message is saved if none is provided
       date,
       time,
       service,
@@ -32,7 +32,11 @@ router.post("/", authenticateToken, async (req, res) => {
 // GET /api/appointments/user - Fetch user-specific appointments
 router.get("/user", authenticateToken, async (req, res) => {
   try {
-    const appointments = await Appointment.find({ user: req.user.id });
+    // Fetch only appointments that are not canceled
+    const appointments = await Appointment.find({
+      user: req.user.id,
+      status: { $ne: "canceled" },
+    }).populate("user", "name email");
     res.json(appointments);
   } catch (error) {
     console.error("Error fetching user appointments:", error);
@@ -43,10 +47,10 @@ router.get("/user", authenticateToken, async (req, res) => {
 // GET /api/appointments/admin - Fetch all appointments (admin only)
 router.get("/admin", authenticateToken, checkAdmin, async (req, res) => {
   try {
-    const appointments = await Appointment.find().populate(
-      "user",
-      "name email"
-    );
+    // Fetch only appointments that are not canceled
+    const appointments = await Appointment.find({
+      status: { $ne: "canceled" },
+    }).populate("user", "name email");
     res.json(appointments);
   } catch (error) {
     console.error("Error fetching admin appointments:", error);
@@ -91,21 +95,22 @@ router.patch(
     try {
       const { reason } = req.body;
       const appointment = await Appointment.findById(req.params.id);
-      if (!appointment)
+      if (!appointment) {
         return res.status(404).json({ message: "Appointment not found" });
+      }
 
       appointment.status = "approved";
       appointment.reason = reason || "Approved by admin";
       await appointment.save();
 
-      // Create a notification
+      // Send a notification
       const notification = new Notification({
         userId: appointment.user,
         message: `Your appointment on ${appointment.date.toDateString()} has been approved.`,
       });
       await notification.save();
 
-      res.json({ message: "Appointment approved successfully!" });
+      res.status(200).json({ message: "Appointment approved successfully!" });
     } catch (error) {
       console.error("Error approving appointment:", error);
       res.status(500).json({ message: "Server error" });
@@ -122,21 +127,27 @@ router.patch(
     try {
       const { date, time } = req.body;
       const appointment = await Appointment.findById(req.params.id);
-      if (!appointment)
+      if (!appointment) {
         return res.status(404).json({ message: "Appointment not found" });
+      }
 
       appointment.date = date;
       appointment.time = time;
+      appointment.status = "rescheduled";
       await appointment.save();
 
-      // Create a notification
+      // Send a notification
       const notification = new Notification({
         userId: appointment.user,
-        message: `Your appointment on ${appointment.date} has been rescheduled.`,
+        message: `Your appointment has been rescheduled to ${appointment.date.toDateString()} at ${
+          appointment.time
+        }.`,
       });
       await notification.save();
 
-      res.json({ message: "Appointment rescheduled successfully!" });
+      res
+        .status(200)
+        .json({ message: "Appointment rescheduled successfully!" });
     } catch (error) {
       console.error("Error rescheduling appointment:", error);
       res.status(500).json({ message: "Server error" });
@@ -161,46 +172,24 @@ router.delete("/:id", authenticateToken, checkAdmin, async (req, res) => {
 // PATCH /api/appointments/:id/cancel - Cancel an appointment
 router.patch("/:id/cancel", authenticateToken, async (req, res) => {
   try {
-    const appointment = await Appointment.findByIdAndUpdate(req.params.id, {
-      status: "canceled",
-    });
+    const appointment = await Appointment.findById(req.params.id);
     if (!appointment)
       return res.status(404).json({ message: "Appointment not found" });
+
+    if (appointment.user.toString() !== req.user.id && !req.user.isAdmin) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    appointment.status = "canceled";
+    await appointment.save();
+
     res.json({ message: "Appointment canceled successfully!" });
   } catch (error) {
+    console.error("Error canceling appointment:", error);
     res.status(500).json({ message: "Server error" });
   }
-});
+}); 
 
-router.patch(
-  "/:id/approve",
-  authenticateToken,
-  checkAdmin,
-  async (req, res) => {
-    try {
-      const { status, reason } = req.body; // Expecting status and reason from request body
-      const appointment = await Appointment.findByIdAndUpdate(req.params.id, {
-        status,
-        reason,
-      });
-      if (!appointment)
-        return res.status(404).json({ message: "Appointment not found" });
 
-      appointment.status = "approved";
-      await appointment.save();
-
-      // Create a notification for the user
-      const notification = new Notification({
-        userId: appointment.user,
-        message: `Your appointment on ${appointment.date} has been approved.`,
-      });
-      await notification.save();
-
-      res.json({ message: "Appointment approved successfully!" });
-    } catch (error) {
-      res.status(500).json({ message: "Server error" });
-    }
-  }
-);
 
 module.exports = router;

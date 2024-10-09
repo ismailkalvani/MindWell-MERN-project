@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+// src/pages/AdminDashboard.js
+
+// src/pages/AdminDashboard.js
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import {
   Container,
@@ -14,7 +17,6 @@ import {
 import styles from "../styles/AdminDashboard.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { useContext } from "react";
 import { NotificationContext } from "../context/NotificationContext";
 
 const AdminDashboard = () => {
@@ -27,6 +29,12 @@ const AdminDashboard = () => {
   const [newDate, setNewDate] = useState("");
   const [newTime, setNewTime] = useState("");
   const { addNotification } = useContext(NotificationContext);
+
+  // Calculate today's date and time
+  const today = new Date();
+  const todayDate = today.toISOString().split("T")[0]; // Format: YYYY-MM-DD
+  const currentTime = today.toTimeString().substring(0, 5); // Format: HH:MM
+  const minTime = newDate === todayDate ? currentTime : "00:00"; // Update minTime based on newDate
 
   // Function to fetch appointments
   const fetchAppointments = async () => {
@@ -117,11 +125,12 @@ const AdminDashboard = () => {
     }
   };
 
-  // Calculate today's date and time
-  const today = new Date();
-  const todayDate = today.toISOString().split("T")[0];
-  const currentTime = today.toTimeString().substring(0, 5);
-  const minTime = newDate === todayDate ? currentTime : "00:00"; // Updated minTime logic
+  const formatTime = (timeString) => {
+    const [hour, minute] = timeString.split(":");
+    const date = new Date();
+    date.setHours(hour, minute);
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }); // e.g., "12:23 PM"
+  };
 
   return (
     <Container className={styles.container}>
@@ -154,10 +163,14 @@ const AdminDashboard = () => {
                         <td>
                           {new Date(appointment.date).toLocaleDateString()}
                         </td>
-                        <td>{appointment.time}</td>
+                        <td>{formatTime(appointment.time)}</td> {/* Call formatTime here */}
                         <td>{appointment.service}</td>
-                        <td>{appointment.name}</td>
-                        <td>{appointment.email}</td>
+                        <td>
+                          {appointment.user ? appointment.user.name : "N/A"}
+                        </td>
+                        <td>
+                          {appointment.user ? appointment.user.email : "N/A"}
+                        </td>
                         <td>
                           <div className="d-flex flex-column gap-2">
                             <Button
@@ -222,20 +235,21 @@ const AdminDashboard = () => {
           {selectedAppointment && (
             <>
               <p>
-                <strong>Name:</strong> {selectedAppointment.name}
+                <strong>Name:</strong> {selectedAppointment.user?.name || "N/A"}
               </p>
               <p>
-                <strong>Email:</strong> {selectedAppointment.email}
+                <strong>Email:</strong>{" "}
+                {selectedAppointment.user?.email || "N/A"}
               </p>
               <p>
-                <strong>Message:</strong> {selectedAppointment.message}
+                <strong>Message:</strong> {selectedAppointment.message || "N/A"}
               </p>
               <p>
                 <strong>Date:</strong>{" "}
                 {new Date(selectedAppointment.date).toLocaleDateString()}
               </p>
               <p>
-                <strong>Time:</strong> {selectedAppointment.time}
+                <strong>Time:</strong> {formatTime(selectedAppointment.time)} {/* Call formatTime here */}
               </p>
               <p>
                 <strong>Service:</strong> {selectedAppointment.service}

@@ -7,6 +7,14 @@ const AppointmentSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
   service: {
     type: String,
     required: true,
@@ -19,9 +27,15 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  message: {
+    type: String,
+    required: false,
+    default: "No message provided",
+  },
   reason: {
     type: String,
-    required: true,
+    required: false,
+    default: "No reason provided",
   },
   paymentStatus: {
     type: String,
@@ -30,8 +44,8 @@ const AppointmentSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["active", "canceled", "rescheduled", "approved"], // Added "approved"
-    default: "active",
+    enum: ["pending", "active", "canceled", "rescheduled", "approved"], // Added "pending"
+    default: "pending",
   },
 });
 

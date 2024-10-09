@@ -1,3 +1,4 @@
+// src/models/Notification.js
 const mongoose = require("mongoose");
 
 const NotificationSchema = new mongoose.Schema({
@@ -10,7 +11,7 @@ const NotificationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  isRead: {
+  read: {
     type: Boolean,
     default: false,
   },

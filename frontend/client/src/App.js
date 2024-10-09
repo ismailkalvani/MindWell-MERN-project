@@ -30,8 +30,8 @@ const App = () => {
 
   return (
     <NotificationProvider>
+      <NotificationDisplay />
       <Router>
-        <NotificationDisplay />
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -39,7 +39,7 @@ const App = () => {
           <Route
             path="/appointments"
             element={
-              isAuthenticated ? (
+              isAuthenticated  && !isAdmin?  (
                 <Appointments />
               ) : (
                 <Navigate to="/appointments" />
@@ -53,7 +53,7 @@ const App = () => {
           <Route
             path="/user/dashboard"
             element={
-              isAuthenticated ? (
+              isAuthenticated ?  (
                 <UserDashboard />
               ) : (
                 <Navigate to="/user/dashboard" />

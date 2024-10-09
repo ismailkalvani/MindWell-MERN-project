@@ -42,7 +42,6 @@ const AdminContactMessages = () => {
   return (
     <Container className="admin-contact-dashboard">
       {" "}
-      {/* Correct class name */}
       <h1 className="mb-4">Submitted Contact Messages</h1>
       {error && <Alert variant="danger">{error}</Alert>}
       <Table striped bordered hover responsive>

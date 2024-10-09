@@ -25,7 +25,8 @@ const NavigationBar = () => {
 
             {isAuthenticated ? (
               <>
-                <Nav.Link href="/appointments">Appointments</Nav.Link>
+              { !isAdmin ? (
+                <Nav.Link href="/appointments">Appointments</Nav.Link> ): null }
                 <Nav.Link href="/counseling">Counseling</Nav.Link>
                 <Nav.Link href="/workshops">Workshops</Nav.Link>
                 {isAdmin ? (
