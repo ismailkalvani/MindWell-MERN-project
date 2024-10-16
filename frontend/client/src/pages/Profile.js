@@ -1,37 +1,29 @@
-// src/pages/Profile.js
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { Container, Card, Image } from "react-bootstrap";
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const token = localStorage.getItem('token');
-      try {
-        const res = await axios.get('/api/auth/user', {
-          headers: {
-            'x-auth-token': token,
-          },
-        });
-        setUser(res.data);
-      } catch (err) {
-        console.error(err.response.data);
-      }
-    };
-
-    fetchUserData();
-  }, []);
+  const { user } = useContext(AuthContext);
 
   if (!user) {
-    return <div>Loading...</div>;
+    return <p>Loading...</p>;
   }
 
   return (
-    <div className="profile-page">
-      <h2>Welcome, {user.name}</h2>
-      <p>Email: {user.email}</p>
-    </div>
+    <Container className="mt-5">
+      <Card className="p-4">
+        <Image
+          src={user.profileImage || "default-avatar.png"}
+          roundedCircle
+          width="150"
+          height="150"
+          className="mb-3 mx-auto d-block"
+        />
+        <h3 className="text-center">{user.name}</h3>
+        <p className="text-center">{user.email}</p>
+        {/* Add more profile details if needed */}
+      </Card>
+    </Container>
   );
 };
 

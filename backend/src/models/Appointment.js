@@ -47,6 +47,16 @@ const AppointmentSchema = new mongoose.Schema({
     enum: ["pending", "active", "canceled", "rescheduled", "approved"], // Added "pending"
     default: "pending",
   },
+  bookedOn: {
+    type: Date,
+  },
+});
+// Middleware to set the 'bookedOn' field to the current date/time before saving
+AppointmentSchema.pre("save", function (next) {
+  if (!this.bookedOn) {
+    this.bookedOn = new Date();
+  }
+  next();
 });
 
 module.exports = mongoose.model("Appointment", AppointmentSchema);

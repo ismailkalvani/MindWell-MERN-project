@@ -1,6 +1,5 @@
 // src/pages/AdminDashboard.js
 
-// src/pages/AdminDashboard.js
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import {
@@ -153,6 +152,7 @@ const AdminDashboard = () => {
                     <th>Service</th>
                     <th>User Name</th>
                     <th>User Email</th>
+                    <th>Booked On </th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -163,13 +163,17 @@ const AdminDashboard = () => {
                         <td>
                           {new Date(appointment.date).toLocaleDateString()}
                         </td>
-                        <td>{formatTime(appointment.time)}</td> {/* Call formatTime here */}
+                        <td>{formatTime(appointment.time)}</td>{" "}
+                        {/* Call formatTime here */}
                         <td>{appointment.service}</td>
                         <td>
                           {appointment.user ? appointment.user.name : "N/A"}
                         </td>
                         <td>
                           {appointment.user ? appointment.user.email : "N/A"}
+                        </td>
+                        <td>
+                          {new Date(appointment.bookedOn).toLocaleString()}{" "}
                         </td>
                         <td>
                           <div className="d-flex flex-column gap-2">
@@ -249,7 +253,8 @@ const AdminDashboard = () => {
                 {new Date(selectedAppointment.date).toLocaleDateString()}
               </p>
               <p>
-                <strong>Time:</strong> {formatTime(selectedAppointment.time)} {/* Call formatTime here */}
+                <strong>Time:</strong> {formatTime(selectedAppointment.time)}{" "}
+                {/* Call formatTime here */}
               </p>
               <p>
                 <strong>Service:</strong> {selectedAppointment.service}

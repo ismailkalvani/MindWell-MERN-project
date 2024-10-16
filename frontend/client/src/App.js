@@ -23,6 +23,7 @@ import Notifications from "./pages/Notifications";
 import { AuthContext } from "./context/AuthContext";
 import { NotificationProvider } from "./context/NotificationContext";
 import NotificationDisplay from "./components/NotificationDisplay";
+import Profile from "./pages/Profile";
 import "./App.css";
 
 const App = () => {
@@ -39,7 +40,7 @@ const App = () => {
           <Route
             path="/appointments"
             element={
-              isAuthenticated  && !isAdmin?  (
+              isAuthenticated && !isAdmin ? (
                 <Appointments />
               ) : (
                 <Navigate to="/appointments" />
@@ -53,7 +54,7 @@ const App = () => {
           <Route
             path="/user/dashboard"
             element={
-              isAuthenticated ?  (
+              isAuthenticated ? (
                 <UserDashboard />
               ) : (
                 <Navigate to="/user/dashboard" />
@@ -91,6 +92,10 @@ const App = () => {
             element={
               isAuthenticated ? <Workshops /> : <Navigate to="/workshops" />
             }
+          />
+          <Route
+            path="/profile"
+            element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
           />
           <Route path="/notifications" element={<Notifications />} />
         </Routes>

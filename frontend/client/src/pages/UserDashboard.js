@@ -64,6 +64,13 @@ const UserDashboard = () => {
     setSelectedAppointment(null);
   };
 
+  const formatTime = (timeString) => {
+    const [hour, minute] = timeString.split(":");
+    const date = new Date();
+    date.setHours(hour, minute);
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }); // e.g., "12:23 PM"
+  };
+
   return (
     <Container className="user-dashboard">
       <h1 className="mb-4">Your Appointments</h1>
@@ -86,7 +93,7 @@ const UserDashboard = () => {
               <tr key={appointment._id}>
                 <td>{appointment.user?.name || "Unknown"}</td>
                 <td>{new Date(appointment.date).toLocaleDateString()}</td>
-                <td>{appointment.time}</td>
+                <td>{formatTime(appointment.time)}</td> {" "}
                 <td>{appointment.service}</td>
                 <td>{appointment.message || "No message provided"}</td>
                 <td>
@@ -141,7 +148,7 @@ const UserDashboard = () => {
                 {new Date(selectedAppointment.date).toLocaleDateString()}
               </p>
               <p>
-                <strong>Time:</strong> {selectedAppointment.time}
+                <strong>Time:</strong> {formatTime(selectedAppointment.time)} {" "}
               </p>
               <p>
                 <strong>Service:</strong> {selectedAppointment.service}

@@ -8,8 +8,26 @@
   }
   .nav-link {
     color: #D4F1F4;
+    margin: auto;
+    
   }
   .nav-link:hover {
     color: #75E6DA;
   }
-  
+  .active-link {
+    text-decoration: underline; /* Underline for active link */
+    color: #ffcc00; /* Active link color */
+  }
+
+
+/* User Profile Styles */
+.user-profile {
+  display: flex;
+  align-items: center;
+  margin-left: 50px; /* Space between links and profile */
+  color: white; /* Text color for user name */
+}
+
+.navbar-user-name {
+  margin-left: 5px; /* Space between image and name */
+}
